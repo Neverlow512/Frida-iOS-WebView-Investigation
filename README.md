@@ -2,7 +2,9 @@
 **Diagnostic Instrumentation: Using Frida to Navigate Obscured iOS WebView Challenges for Security Research**
 
 **Author:** Neverlow512
+
 **Date:** 02 April 2025
+
 **Classification:** TLP:WHITE (Suitable for Public Release)
 
 **Preamble:** *This document details a specific diagnostic phase within a larger security research initiative. It is presented to demonstrate analytical methodology and technical skills in dynamic instrumentation. The findings pertain to application behavior observed approximately six months prior to this publication and may not reflect the current state of the system. The full instrumentation scripts are not being released.*
