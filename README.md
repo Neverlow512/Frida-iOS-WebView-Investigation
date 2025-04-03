@@ -105,15 +105,16 @@ This instrumentation, enabled by the SSL pinning bypass and targeted hooks, yiel
 { 'type': 'webview_load_html', /* ... */ 'html': '<html>...<script src="https://[arkose_domain]/v2/[PUBLIC_KEY]/api.js">...</script>...</html>' /* ... */ }
 ```
 
-**3.2. Identifying the Critical Communication Channel:** The most vital insight I gained came from observing the JavaScript execution flow captured by Frida, particularly the `onCompleted` callback within the Arkose configuration loaded into the WebView (as seen in the `webview_load_html` log):
+**3.2. Identifying the Critical Communication Channel:** The most vital insight I gained came from observing the JavaScript execution flow captured by Frida. Particularly, **analysis of the captured logs showed** the `onCompleted` callback within the Arkose configuration loaded into the WebView:
 
 ```javascript
 // Example: Observed JS pattern (Same as before)
 onCompleted: function(response) {
+    // Send the session token back to the native iOS code
     window.webkit.messageHandlers.AL_API.postMessage({"sessionToken" : response.token}); 
 }
 ```
-**Analysis:** This explicitly showed me the mechanism bypassing standard web communication flows for submitting the token. **This discovery was paramount.**
+**Analysis:** This explicitly revealed the mechanism used to send the CAPTCHA result back to the application, bypassing standard web communication flows. The session token was being passed from the WebView's JavaScript context to the native Swift/Objective-C code using the `window.webkit.messageHandlers.AL_API.postMessage` **JavaScript-to-native bridge**. **This discovery was paramount**, as it pinpointed the exact interface responsible for relaying the successfully solved challenge's token to the rest of the application's logic.
 
 **3.3. Guiding the Bypass Strategy:** The Frida analysis led to these conclusions:
 *   The Appium obscurity wasn't just a simple overlay; it genuinely prevented access to the necessary web context for interaction. It was pretty clear to me that this was a good security measure implemented by the app in order to prevent botting. (Also, as a side note, this was one of the toughest, most brilliant security measures I ever encountered while trying to research the security of an iOS app using Appium. It's so simple yet so efficient, and I would definitely recommend its implementation as a basic security feature on any app.)
