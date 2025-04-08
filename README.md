@@ -128,7 +128,7 @@ onCompleted: function(response) {
 
 While Frida was not the tool used for the final CAPTCHA bypass in this research path, the dynamic analysis it enabled was an **absolutely crucial prerequisite**. It provided me with the necessary visibility into an obscured system, pinpointed the exact communication mechanism (`messageHandlers`), and allowed for an informed decision to pursue a targeted UI automation strategy.
 
-Dynamic instrumentation with Frida proved essential. It showcases the ability to adapt methodologies when faced with obscured environments and highlights proficiency in **dynamic analysis using Frida, JavaScript execution tracing, network traffic interception (including HTTPS via SSL pinning bypasses), and identifying non-standard communication channels like JavaScript-to-native bridges*. The insights gained here directly paved the way for the successful UI automation strategy presented in *"Breaking the Unbreakable: Analyzing Arkose Labs' CAPTCHA Resilience in iOS Apps"*.
+Dynamic instrumentation with Frida proved essential. It showcases the ability to adapt methodologies when faced with obscured environments and highlights proficiency in **dynamic analysis using Frida, JavaScript execution tracing, network traffic interception (including HTTPS via SSL pinning bypasses), and identifying non-standard communication channels like JavaScript-to-native bridges*. The insights gained here directly paved the way for the successful UI automation strategy presented in [*"Breaking the Unbreakable: A Practical Analysis of Arkose Labs' CAPTCHA Resilience via Orchestrated Visual Relay on iOS"*](https://github.com/Neverlow512/Breaking-the-Unbreakable-iOS-Captcha-Research/blob/main/README.md).
 
 **5. Research Context & Timeline Note:**
 
